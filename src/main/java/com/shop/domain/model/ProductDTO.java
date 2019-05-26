@@ -15,4 +15,11 @@ public class ProductDTO {
     String price;
     Integer stoc;
     String type;
+
+
+//    {
+//        "id" : "1",
+//        "name" : "ball"
+//
+//    }
 }

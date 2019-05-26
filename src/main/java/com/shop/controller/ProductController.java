@@ -19,6 +19,18 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
+    @GetMapping("/add-product")
+    public String showProductPage(ModelMap model) {
+        ProductDTO productDTO = ProductDTO.builder()
+                                          .name("ball")
+                                          .price("200")
+                                          .type("sport")
+                                          .stoc(50)
+                                          .build();
+        model.addAttribute("product", productDTO);
+        return "product";
+    }
+
     @PostMapping("/create-product")
     public String createProduct(ModelMap model, ProductDTO productDTO) {
         service.createProduct(productDTO);
@@ -29,7 +41,6 @@ public class ProductController {
     public String listAllProducts(ModelMap model) {
         String name = getLoggedInUserName(model);
         List<ProductDTO> allProducts = service.getAllProducts();
-        System.out.println(allProducts);
         model.put("products", allProducts);
         return "list-products";
     }
@@ -45,16 +56,5 @@ public class ProductController {
         return principal.toString();
     }
 
-    @GetMapping("/add-product")
-    public String showProductPage(ModelMap model) {
-        ProductDTO productDTO = ProductDTO.builder()
-                                          .name("ball")
-                                          .price("200")
-                                          .type("sport")
-                                          .stoc(50)
-                                          .build();
-        model.addAttribute("product", productDTO);
-        return "product";
-    }
 
 }

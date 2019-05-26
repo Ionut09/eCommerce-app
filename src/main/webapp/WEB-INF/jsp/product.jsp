@@ -1,5 +1,6 @@
 <%@ include file="common/header.jspf" %>
 <%@ include file="common/navigation.jspf" %>
+
 <div class="container">
     <form:form method="post" action="/create-product" modelAttribute="product">
         <form:hidden path="id"/>
@@ -30,4 +31,5 @@
         <button type="submit" class="btn btn-success">Add</button>
     </form:form>
 </div>
+
 <%@ include file="common/footer.jspf" %>
