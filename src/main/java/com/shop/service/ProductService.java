@@ -1,10 +1,14 @@
 package com.shop.service;
 
+import com.shop.domain.enums.ProductType;
+import com.shop.domain.model.ProductDTO;
+
 import java.util.List;
 
-import com.shop.domain.Product;
-import com.shop.domain.enums.ProductType;
-
 public interface ProductService {
-	List<Product> getProductsByType(ProductType type);
+    void createProduct(ProductDTO product);
+
+    List<ProductDTO> getAllProducts();
+
+    List<ProductDTO> getProductsByType(ProductType type);
 }

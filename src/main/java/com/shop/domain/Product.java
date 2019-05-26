@@ -1,26 +1,39 @@
 package com.shop.domain;
 
-import java.math.BigDecimal;
-
-import javax.persistence.*;
-
 import com.shop.domain.enums.ProductType;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
 	@Id
-	private Long id;
+	private String id;
 
 	@Column(name = "name")
-	private String productName;
+	private String name;
 
 	@Column(name = "type")
 	@Enumerated(EnumType.STRING)
-	private ProductType productType;
+	private ProductType type;
 
 	private BigDecimal price;
 
