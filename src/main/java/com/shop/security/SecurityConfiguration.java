@@ -12,14 +12,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.inMemoryAuthentication().withUser("Ionut").password("dummy")
-            .roles("USER", "ADMIN");
+        auth.inMemoryAuthentication()
+            .withUser("Ionut").password("dummy")
+            .roles("USER", "ADMIN", "shoper")
+            .and()
+            .withUser("Marius").password("blab")
+            .roles("USER");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login").permitAll()
-            .antMatchers("/", "/*product*/**").access("hasRole('USER')").and()
+        http.authorizeRequests()
+            .antMatchers("/login").permitAll()
+            .antMatchers("/", "/*product*/**").access("hasRole('USER')")
+            .antMatchers("/", "/*user*/**").access("hasRole('ADMIN')")
+            .and()
             .formLogin();
+
+        http.authorizeRequests().antMatchers("/login").permitAll()
+            .antMatchers("/", "/administrationPage").access("hasRole('ADMIN')").and()
+            .formLogin();
+
+
     }
 }
